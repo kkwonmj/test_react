@@ -1,0 +1,31 @@
+1. yarn add koa  >> node.js 웹 서버 구축 사용 프레임워크
+2. yarn add --dev nodemon >> index.js 변경 시 서버 자동 재시작
+   ㄴ package.json에서 script에 수정해서 쓰면 됨
+   ㄴ 원래는 node src/index.js로 start 입력해야 하는데 index.js는 디렉터리만 입력해도 실행 가능
+3. yarn add koa-router >> 코아 라우터 모듈 설치
+4. yarn add joi >> 객체 검증을 수월하게 해 주는 라이브러리
+5. yarn add mongoose dotenv >> 환경변수들을 파일에 넣고 사용할 수 있게 해 주는 개발 도구 (이걸로 .env)를 설정해서 포트 번호를 변경했음
+6. yarn add esm >> 이거 설치하고 몇 가지 추가로 넣으면 import 사용 가능 // 기존에는 const a = require(''); 이런 식으로 불러왔음
+7. yarn add bcrypt >> 단방향 해싱 함수 지원 라이브러리 (보안성이 높아짐)
+8. yarn add jsonwebtoken >> JWT 토큰 만들기 라이브러리
+
+// 인덱스에서 어떤 방식으로 받아올 건지 구현 > 추가 파일을 만들어서 어떤 식으로 실행해서 받아올 건지 함수 생성
+
+ - mongoose.model()
+따로 폴더를 만들어서 어떤 형식으로 들어가는지 정의
+ +) 필요한 함수를 만들어서 파일에 보관
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+< 프런트엔드>
+
+1. 설정 파일 생성 (.prettierrc), (jsconfig.json)
+2. 라우터 적용 (react-router-dom)
+ 2-1) 생성할 라우트 컴포넌트 생각 (로그인, 회원가입, 글쓰기 ... )
+ 2-2) react-router-dom은 버전 낮추기 
+	(yarn add react-router-dom@5.3.0)
+3. index.js 파일 BrowerRouter 감싸 주기
+4. App.js에 파일이랑 경로 연결
+5. 리덕스(리액트 상태 관리 라이브러리) 적용
+6. 스토어 생성 // 브라우저라우터 프로바이더로 묶어 주기 (객체는 스토어)
+7. 회원 가입 및 로그인 창 생성

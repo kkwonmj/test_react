@@ -1,0 +1,36 @@
+Chap25. 글쓰기 기능 구현
+
+1. 에디터 UI 구현
+   1-1) 사용 라이브러리: yarn add quill (글쓰기 작성 에디터)
+   1-2) components/write/Editor.js에 제목(input)과 내용 (Quill) 사용
+   1-3) Editor.js를 pages/WritePage.js에 렌더링
+
+2. 에디터 하단 UI 구현
+ - 태그 추가, 포스트 작성 완료 or 취소 버튼 컴포넌트 만들 거임 -
+    2-1)  components/write/TagBox.js 생성 (태그 추가)
+      ㄴ 여기서 React.memo를 쓰는데 같은 props로 렌더링이 자주 일어나는 컴퍼넌트일 때 memo를 쓰면 좋음
+      ㄴ TagItem, TagList 컴포넌트 분리시킨 이유: TagBox 컴포넌트는 두 가지 상황에서 렌더링을 하기 때문 (1. input 바뀔 때 2. tag 바뀔 때) 
+    2-2) WritePage.js 렌더링
+    2-3) TagBox.js에 훅을 사용하여 태그 추가 & 제거 기능 구현
+    2-4) components/write/WriteActionButtons.js 생성 (포스트 작성 및 취소) (onPublish, onCancel props 받아올 예정)
+    2-5) WritePage.js 렌더링
+
+3. 리덕스로 글쓰기 상태 관리
+    3-1) modules/write.js 리덕스 모듈 생성 (액션 생성 함수 및 액션 상태 지정) ( [] : (state, {payload})
+    3-2) index.js 루트 리듀서에 포함시키기
+    3-3) containers/write/EditorContainer.js를 생성하여 title 값과 body값을 리덕스 스토어에서 불러와 Editor 컴포넌트에 전달
+    3-4) WritePage에서 기존 Editor를 EditorContainer로 대체
+    3-5) Editor.js에 EditorContainer.js에서 props로 받은 값을 추가
+    3-6) containers/write/TagBoxContainer.js 생성
+    3-7) WritePage.js에서 TagBox를 TagBoxContainer로 변경
+    3-8) TagBox.js에서 TagBoxContainer.js로 전달받은 props 사용 (onChangeTags, tags)
+
+4. 글쓰기 API 연동
+   4-1) 포스트 관련 API 요청 함수 (lib/api/posts.js)
+   4-2) 요청 함수 호출하는 리덕스 액션과 사가 준비 (modules/write.js)
+   4-3) modules/index.js의 rootSaga에 writeSaga(/write) 등록
+   4-4) containers/write/WriteActionButtonsContainer.js 작성
+   4-5) /WritePage.js의 WriteActionButtons > WriteActionButtonsContainer 
+
+* 외부 라이버리 연동 시 useRef, useEffect 사용
+   ㄴ 클래스형일 시 createRef, componentDidMount
