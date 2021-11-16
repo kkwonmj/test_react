@@ -34,3 +34,5 @@ Chap25. 글쓰기 기능 구현
 
 * 외부 라이버리 연동 시 useRef, useEffect 사용
    ㄴ 클래스형일 시 createRef, componentDidMount
+
+컨테이너에서 props를 전달해 주고 찐 사용하는 데서 받는 듯
