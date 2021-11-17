@@ -4,9 +4,13 @@ import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
+import { Helmet } from 'react-helmet-async';
 
 const PostViewerBlock = styled(Responsive)`
   margin-top: 4rem;
+  border-left: 1px solid ${palette.gray[8]};
+  border-right : 1px solid ${palette.gray[8]};
+  margin: 3rem auto;
 `;
 const PostHead = styled.div`
   border-bottom: 1px solid ${palette.gray[2]};
@@ -24,7 +28,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const PostViewer = ({ post, error, loading, actionButtons}) => {
+const PostViewer = ({ post, error, loading, actionButtons, ownPost }) => {
   // 에러 발생 시
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -40,19 +44,23 @@ const PostViewer = ({ post, error, loading, actionButtons}) => {
 
   const { title, body, user, publishedDate, tags } = post;
   return (
-    <PostViewerBlock>
-      <PostHead>
-        <h1>{title}</h1>
-        <SubInfo
-          username={user.username}
-          publishedDate={publishedDate}
-          hasMarginTop
-        />
-        <Tags tags={tags} />
-      </PostHead>
-      {actionButtons}
-      <PostContent dangerouslySetInnerHTML={{ __html: body }} />
-    </PostViewerBlock>
+        <PostViewerBlock>
+          <Helmet>
+            <title>{title}</title>
+          </Helmet>
+
+          <PostHead>
+            <h1>{title}</h1>
+            <SubInfo
+              username={user.username}
+              publishedDate={publishedDate}
+              hasMarginTop
+            />
+            <Tags tags={tags} />
+          </PostHead>
+          {actionButtons}
+          <PostContent dangerouslySetInnerHTML={{ __html: body }} />
+        </PostViewerBlock>
   );
 };
 
