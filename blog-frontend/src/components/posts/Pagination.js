@@ -20,7 +20,7 @@ const buildLink = ({ username, tag, page }) => {
 const Pagination = ({ page, lastPage, username, tag }) => {
   return (
     <PaginationBlock>
-      <Button
+      <Button style = {{marginBottom: '3rem'}}
         disabled={page === 1}
         to={
           page === 1 ? undefined : buildLink({ username, tag, page: page - 1 })
@@ -29,7 +29,7 @@ const Pagination = ({ page, lastPage, username, tag }) => {
         이전
       </Button>
       <PageNumber>{page}</PageNumber>
-      <Button
+      <Button style = {{marginBottom: '3rem'}}
         disabled={page === lastPage}
         to={
           page === lastPage
